@@ -1,0 +1,37 @@
+<section class="container">
+    <mat-card *ngFor="let product of products | search:searchByLetter">
+        <mat-card-header class="header">
+            <mat-card-title>
+                {{product.productName}}
+            </mat-card-title>
+            <mat-card-subtitle>
+                {{product.flavor}}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content class="content">
+            <div class="text">
+                <p>{{product.description}}{{product.price}}</p>
+            </div>
+            <div class="iconButton flex justify-between">
+                <div>
+                    <button mat-icon-button><mat-icon>share</mat-icon></button>
+                </div>
+                <div>
+                    <button mat-icon-button><mat-icon>favorite_border</mat-icon></button>
+                    <button mat-icon-button><mat-icon>add_shopping_cart</mat-icon></button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <div *ngIf="products.length === 0">No se encontraron productos</div>
+    <div class="paginator"><button mat-button class="buttonPaginator1"><mat-icon>navigate_before</mat-icon><span>{{'Previous' | translate}}</span></button>
+        <!-- <span class="page">{{ this.pagina + 1 }}/{{ totalPaginas }}</span> -->
+        <button mat-button class="buttonPaginator2">
+            <span>{{ 'Next' | translate }}</span>
+            <mat-icon class="iconPaginator">navigate_next</mat-icon>
+          </button>
+    </div>
+    <!-- <mat-paginator [length]="pageSize" [showFirstLastButtons]="showFirstLastButtons">
+    </mat-paginator> -->
+</section>

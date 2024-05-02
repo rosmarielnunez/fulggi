@@ -1,0 +1,90 @@
+<section class="container">
+    <button type="button" class="title_button ">
+        <h1>{{"Add Product" | translate}}</h1>
+        <mat-icon>playlist_add</mat-icon>
+    </button>
+    <form [formGroup]="formulary" (ngSubmit)="sendProduct()" class="form">
+        <div class="flex justify-between">
+            <label class="label_Style" for="productName">{{"Product" | translate}}</label>
+            <input class="label_Style" placeholder="............................................................................................................................................" type="text" 
+                    id="productName" 
+                    formControlName="productName"
+                    required>
+        </div>
+        <div class="flex justify-between">
+            <label for="flavor">{{"Flavor" | translate}}</label>
+            <input placeholder="..........................................................................................................................................." type="text" 
+                    id="flavor" 
+                    formControlName="flavor"
+                    required>
+        </div>
+        <div class="flex justify-between">
+            <label for="image" class="label_imgStyle">{{"Image" | translate}}</label>
+            <div class="w-full">
+            <ngx-dropzone (change)="onSelect($event, 'image')">
+                <ngx-dropzone-label>Upload</ngx-dropzone-label>
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of imageFiles" [file]="f"
+                    [removable]="true" (removed)="onRemove(f, 'image')">
+                </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+            <button (click)="onUploadImage()" class="button_Style">Subir imagen</button>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <label for="video" class="label_imgStyle">{{"Video" | translate}}</label>
+            <div class="w-full">
+                <ngx-dropzone (change)="onSelect($event, 'video')">
+                    <ngx-dropzone-label>Upload</ngx-dropzone-label>
+                    <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of videoFiles" [file]="f"
+                     [removable]="true" (removed)="onRemove(f, 'video')">
+                    </ngx-dropzone-video-preview>
+                </ngx-dropzone>
+                <button (click)="onUploadVideo()" class="button_Style">Subir vídeo</button>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <label for="price">{{"Price" | translate}}</label>
+            <input placeholder="..........................................................................................................................................." type="number" 
+                    id="price" 
+                    formControlName="price"
+                    required>
+        </div>
+        <div class="flex justify-between">
+            <label for="quantity">{{"Quantity" | translate}}</label>
+            <input placeholder="..........................................................................................................................................." type="number" 
+                    id="quantity" 
+                    formControlName="quantity"
+                    required>
+        </div>
+        <div class="flex justify-between">
+            <label for="size">{{"Size" | translate}}</label>
+            <input placeholder="..........................................................................................................................................." type="number" 
+                    id="size" 
+                    formControlName="size"
+                    required>
+        </div>
+        <div class="flex justify-between">
+            <label for="type">{{"Type" | translate}}</label>
+            <input placeholder="..........................................................................................................................................." type="text" 
+                    id="type" 
+                    formControlName="type"
+                    required>
+        </div>
+        <div class="flex justify-between">
+            <label class="label_Style1" for="description">{{"Description" | translate}}</label>
+            <input class="label_Style1" placeholder="..........................................................................................................................................." type="text" 
+                    id="description" 
+                    formControlName="description"
+                    required="description">
+        </div>
+        <div class="flex justify-center">
+            <mat-icon [routerLink]="['/home']" class="icon_Style">keyboard_return</mat-icon>
+            <button type="submit" [disabled]="!formulary.valid" (click)="sendProduct()"
+                class="button_Submit_Style">{{"Send" | translate}}</button>
+                <mat-icon (click)="clearFormulary()" class="icon_Style1">delete</mat-icon>
+        </div>
+        <mat-error *ngIf="formulary.invalid && (formulary.dirty || formulary.touched)" class="invalid_Form">
+            Debe completar todos los campos requeridos para poder enviar el formulario.
+      </mat-error>
+    </form>
+</section>
