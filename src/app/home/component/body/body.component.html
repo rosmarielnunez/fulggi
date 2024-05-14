@@ -25,13 +25,14 @@
         </mat-card-content>
     </mat-card>
     <div *ngIf="products.length === 0">No se encontraron productos</div>
-    <div class="paginator"><button mat-button class="buttonPaginator1"><mat-icon>navigate_before</mat-icon><span>{{'Previous' | translate}}</span></button>
-        <!-- <span class="page">{{ this.pagina + 1 }}/{{ totalPaginas }}</span> -->
-        <button mat-button class="buttonPaginator2">
+    <div class="paginator">
+        <button mat-button class="buttonPaginator1" (click)="previousPage()">
+            <mat-icon>navigate_before</mat-icon>
+            <span>{{'Previous' | translate}}</span>
+        </button>
+        <button mat-button class="buttonPaginator2" (click)="nextPage()">
             <span>{{ 'Next' | translate }}</span>
             <mat-icon class="iconPaginator">navigate_next</mat-icon>
-          </button>
+        </button>
     </div>
-    <!-- <mat-paginator [length]="pageSize" [showFirstLastButtons]="showFirstLastButtons">
-    </mat-paginator> -->
 </section>
